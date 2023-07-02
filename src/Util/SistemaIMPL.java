@@ -3,6 +3,8 @@ package Util;
 import Entities.Libro;
 import Entities.Usuario;
 import Forms.InicioSesion;
+import Forms.MenuOpciones;
+import Forms.menuBuscarPorISBN;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,6 +15,7 @@ public class SistemaIMPL {
     ArrayList<Libro> Libros = new ArrayList<Libro>();
 
     private InicioSesion inicioSesion;
+    private menuBuscarPorISBN menuBuscarPorISBN;
 
     /**
      * Método encargado de leer el archivo de "libros.txt".
@@ -64,7 +67,8 @@ public class SistemaIMPL {
     }
 
     public void starProgram(){
-        this.inicioSesion=new InicioSesion(ListaUsuarios);
+        this.inicioSesion=new InicioSesion(ListaUsuarios,Libros);
+
     }
 }
 
