@@ -1,11 +1,11 @@
 package Forms;
 
 import Entities.Libro;
+import Entities.Usuario;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MenuOpciones extends JFrame {
@@ -14,10 +14,12 @@ public class MenuOpciones extends JFrame {
     private JButton DevolverLibroButton;
     private JButton AgregarNuevoLibroButton;
     private JButton PrestarLibroButton;
+    private JButton cerrarSesionButton;
 
     private List<Libro>listaLibro;
+    private List<Usuario>listaUsuarios;
 
-    public MenuOpciones(List<Libro>listaLibro){
+    public MenuOpciones(List<Libro>listaLibro, List<Usuario>listaUsuarios){
         this.listaLibro=listaLibro;
         setContentPane(eleccionopciones);
         setTitle("Menu De Biblioteca");
@@ -48,11 +50,19 @@ public class MenuOpciones extends JFrame {
                 prestarlibro();
             }
         });
+        cerrarSesionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InicioSesion inicioSesion = new InicioSesion(listaUsuarios, listaLibro);
+                dispose();
+                inicioSesion.setVisible(true);
+            }
+        });
 
     }
     private void buscarlibro (){
         dispose();
-        menuBuscarPorISBN busquedaISBN = new menuBuscarPorISBN(listaLibro);
+        menuBuscarPorISBN busquedaISBN = new menuBuscarPorISBN(listaLibro,listaUsuarios);
         busquedaISBN.setVisible(true);
 
 

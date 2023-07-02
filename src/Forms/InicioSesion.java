@@ -53,7 +53,7 @@ public class InicioSesion extends JFrame {
                         JOptionPane.showMessageDialog(menu, "Ingresaste con exito");
                         condicion = false;
                         dispose();
-                        MenuOpciones menuOpciones = new MenuOpciones(listaLibros);
+                        MenuOpciones menuOpciones = new MenuOpciones(listaLibros,listaUsuarios);
                         menuOpciones.setVisible(true);
 
                     }
@@ -70,6 +70,7 @@ public class InicioSesion extends JFrame {
             }
             else{
                 JOptionPane.showMessageDialog(menu,"Por favor , ingrese datos en todos los campos");
+                clear();
             }
 
         }

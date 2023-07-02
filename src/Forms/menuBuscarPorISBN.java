@@ -1,6 +1,7 @@
 package Forms;
 
 import Entities.Libro;
+import Entities.Usuario;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,20 +17,30 @@ public class menuBuscarPorISBN extends JFrame {
     private JLabel Nombreautor;
     private JLabel CategoriaRespuesta;
     private JLabel NumeroCopiasRespuesta;
+    private JButton volverAlMenuPrincipalButton;
 
     private List<Libro> listaLibros;
+    private List<Usuario>listaUsuarios;
 
-    public menuBuscarPorISBN(List<Libro>listaLibros){
+    public menuBuscarPorISBN(List<Libro>listaLibros, List<Usuario>listaUsuarios){
         this.listaLibros=listaLibros;
         setContentPane(busquedaporISBN);
         setTitle("Menu de Biblioteca");
-        setSize(400,400);
+        setSize(500,400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         buscarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 despliegaDatos(listaLibros);
+            }
+        });
+        volverAlMenuPrincipalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MenuOpciones menuOpciones = new MenuOpciones(listaLibros,listaUsuarios);
+                dispose();
+                menuOpciones.setVisible(true);
             }
         });
     }
