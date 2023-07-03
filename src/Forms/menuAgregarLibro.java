@@ -54,9 +54,9 @@ public class menuAgregarLibro extends JFrame {
             String Titulo = TituloaAgregar.getText();
             String Autor = AutoraAgregar.getText();
             String Categoria = CategoriaAgregar.getText();
-            int Paginas = Integer.parseInt(PaginasaAgregar.getText());
-            int Stock = Integer.parseInt(StockaAgregar.getText());
-            if (!ISBN.isEmpty() || !Titulo.isEmpty() || !Autor.isEmpty() || !Categoria.isEmpty()){
+            String Paginas = PaginasaAgregar.getText();
+            String Stock = StockaAgregar.getText();
+            if (!ISBN.isEmpty() && !Titulo.isEmpty() && !Autor.isEmpty() && !Categoria.isEmpty() && !Paginas.isEmpty() && !Stock.isEmpty()){
                 Iterator<Libro> iterator= this.listaLibros.iterator();
                 while (iterator.hasNext()){
                     Libro libroaux = iterator.next();
@@ -71,7 +71,7 @@ public class menuAgregarLibro extends JFrame {
                     }
                 }
                 if(isbnEncotrado){
-                    Libro libroaAgregar = new Libro(ISBN,Titulo,Autor,Categoria,Paginas,Stock);
+                    Libro libroaAgregar = new Libro(ISBN,Titulo,Autor,Categoria,Integer.parseInt(Paginas),Integer.parseInt(Stock));
                     listaLibros.add(libroaAgregar);
                     JOptionPane.showMessageDialog(menuagregarlibro,"El libro a sido agregado con exito!");
                     clear();

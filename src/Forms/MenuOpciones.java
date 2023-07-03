@@ -79,7 +79,9 @@ public class MenuOpciones extends JFrame {
 
     }
     private void prestarlibro(){
-        JOptionPane.showMessageDialog(eleccionopciones,"prestar libro");
+        dispose();
+        menuArrendarLibro menuArrendarLibro= new menuArrendarLibro(listaLibro,listaUsuarios);
+        menuArrendarLibro.setVisible(true);
 
     }
 }
