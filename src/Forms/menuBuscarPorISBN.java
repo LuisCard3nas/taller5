@@ -24,6 +24,7 @@ public class menuBuscarPorISBN extends JFrame {
 
     public menuBuscarPorISBN(List<Libro>listaLibros, List<Usuario>listaUsuarios){
         this.listaLibros=listaLibros;
+        this.listaUsuarios=listaUsuarios;
         setContentPane(busquedaporISBN);
         setTitle("Menu de Biblioteca");
         setSize(500,400);

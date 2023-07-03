@@ -44,7 +44,7 @@ public class InicioSesion extends JFrame {
             String contraseniaIngresada = String.valueOf(ContraseniaIngresada.getPassword());
 
             if (!rutIngresado.isEmpty() && !contraseniaIngresada.isEmpty()){
-                Iterator<Usuario> iterator = ListaUsuarios.iterator();
+                Iterator<Usuario> iterator = this.listaUsuarios.listIterator();
                 while (iterator.hasNext()){
                     Usuario usuario = iterator.next();
                     String rutAux = usuario.getRut();
@@ -62,24 +62,17 @@ public class InicioSesion extends JFrame {
                     JOptionPane.showMessageDialog(menu, "Credenciales invalidas, por favor vuelva a intentarlo");
                     clear();
                 }
-
-
-
-
-
             }
             else{
                 JOptionPane.showMessageDialog(menu,"Por favor , ingrese datos en todos los campos");
                 clear();
             }
-
         }
         catch (NumberFormatException e){
            JOptionPane.showMessageDialog(menu," Ha ocurrido un error [!]");
            clear();
 
         }
-
     }
 
     private void clear(){

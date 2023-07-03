@@ -56,7 +56,7 @@ public class menuAgregarLibro extends JFrame {
             String Categoria = CategoriaAgregar.getText();
             int Paginas = Integer.parseInt(PaginasaAgregar.getText());
             int Stock = Integer.parseInt(StockaAgregar.getText());
-            if (!ISBN.isEmpty() && !Titulo.isEmpty() && !Autor.isEmpty() && !Categoria.isEmpty()){
+            if (!ISBN.isEmpty() || !Titulo.isEmpty() || !Autor.isEmpty() || !Categoria.isEmpty()){
                 Iterator<Libro> iterator= this.listaLibros.iterator();
                 while (iterator.hasNext()){
                     Libro libroaux = iterator.next();

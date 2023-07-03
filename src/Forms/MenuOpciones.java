@@ -21,6 +21,7 @@ public class MenuOpciones extends JFrame {
 
     public MenuOpciones(List<Libro>listaLibro, List<Usuario>listaUsuarios){
         this.listaLibro=listaLibro;
+        this.listaUsuarios=listaUsuarios;
         setContentPane(eleccionopciones);
         setTitle("Menu De Biblioteca");
         setSize(400,400);
@@ -53,7 +54,7 @@ public class MenuOpciones extends JFrame {
         cerrarSesionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InicioSesion inicioSesion = new InicioSesion(listaUsuarios, listaLibro);
+                InicioSesion inicioSesion = new InicioSesion(listaUsuarios,listaLibro);
                 dispose();
                 inicioSesion.setVisible(true);
             }
