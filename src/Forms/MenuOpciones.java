@@ -72,7 +72,9 @@ public class MenuOpciones extends JFrame {
 
     }
     private void agregarnuevolibro(){
-        JOptionPane.showMessageDialog(eleccionopciones,"agregar Libro ");
+        dispose();
+        menuAgregarLibro menuAgregarLibro = new menuAgregarLibro(listaLibro,listaUsuarios);
+        menuAgregarLibro.setVisible(true);
 
     }
     private void prestarlibro(){

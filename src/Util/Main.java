@@ -7,9 +7,5 @@ public class Main {
         sistemaIMPL.leerArchivoUsuarios();
         sistemaIMPL.starProgram();
 
-        
-
-
-
     }
 }
