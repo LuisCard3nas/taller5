@@ -3,6 +3,7 @@ package Forms;
 import javax.swing.*;
 import Entities.Libro;
 import Entities.Usuario;
+import Entities.UsuarioInicioSesion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,11 +21,14 @@ public class menuAgregarLibro extends JFrame {
     private JButton agregar;
     private JButton menuPrincipalButton;
 
+
     private List<Libro> listaLibros;
     private List<Usuario>listaUsuarios;
+    private UsuarioInicioSesion usuarioInicioSesion;
 
-    public menuAgregarLibro(List<Libro>listaLibros,List<Usuario>listaUsuarios){
+    public menuAgregarLibro(List<Libro>listaLibros,List<Usuario>listaUsuarios,UsuarioInicioSesion usuarioInicioSesion){
         this.listaLibros= listaLibros;
+        this.usuarioInicioSesion=usuarioInicioSesion;
         setContentPane(menuagregarlibro);
         setTitle("Agregar Libro ");
         setSize(400,400);
@@ -39,7 +43,7 @@ public class menuAgregarLibro extends JFrame {
         menuPrincipalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuOpciones menuOpciones = new MenuOpciones(listaLibros,listaUsuarios);
+                MenuOpciones menuOpciones = new MenuOpciones(listaLibros,listaUsuarios,usuarioInicioSesion);
                 dispose();
                 menuOpciones.setVisible(true);
             }

@@ -2,10 +2,14 @@ package Forms;
 
 import Entities.Libro;
 import Entities.Usuario;
+import Entities.UsuarioInicioSesion;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,10 +20,12 @@ public class menuArrendarLibro extends JFrame {
     private JTextField ISBNTextField;
     private List<Libro> listaLibro;
     private List<Usuario>listaUsuarios;
+    private UsuarioInicioSesion usuarioInicioSesion;
 
-    public menuArrendarLibro(List<Libro>listaLibro,List<Usuario>listaUsuarios){
+    public menuArrendarLibro(List<Libro>listaLibro,List<Usuario>listaUsuarios,UsuarioInicioSesion usuarioInicioSesion){
         this.listaLibro=listaLibro;
         this.listaUsuarios=listaUsuarios;
+        this.usuarioInicioSesion=usuarioInicioSesion;
         setContentPane(menuarrendarlibro);
         setTitle("Menu de Biblioteca");
         setSize(500,400);
@@ -35,7 +41,7 @@ public class menuArrendarLibro extends JFrame {
         menuPrincipalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuOpciones menuOpciones = new MenuOpciones(listaLibro,listaUsuarios);
+                MenuOpciones menuOpciones = new MenuOpciones(listaLibro,listaUsuarios,usuarioInicioSesion);
                 dispose();
                 menuOpciones.setVisible(true);
             }
@@ -63,8 +69,11 @@ public class menuArrendarLibro extends JFrame {
                             int auxNuevoVarlosStock = StockAux-1;
                             libroaux.setStock(auxNuevoVarlosStock);
                             JOptionPane.showMessageDialog(menuarrendarlibro,"Libro arrendado con exito.");
+                            String rutAux = usuarioInicioSesion.getRut();
+                            System.out.println(rutAux);
+                            AgregarDatosPrestamoLibroTxt(libroaux,usuarioInicioSesion);
                             dispose();
-                            MenuOpciones menuOpciones = new MenuOpciones(listaLibro,listaUsuarios);
+                            MenuOpciones menuOpciones = new MenuOpciones(listaLibro,listaUsuarios,usuarioInicioSesion);
                         }else{
                             JOptionPane.showMessageDialog(menuarrendarlibro,"Lo sentimos el libro solicitado no se encuentra con stock disponibles");
                             clear();
@@ -88,5 +97,19 @@ public class menuArrendarLibro extends JFrame {
     }
     private void clear(){
         ISBNTextField.setText("");
+    }
+    private void AgregarDatosPrestamoLibroTxt (Libro libroAux,UsuarioInicioSesion usuarioInicioSesion){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Reservas.txt",true));
+
+            String linea = usuarioInicioSesion.getRut() + "," + usuarioInicioSesion.getNombre()+ "," + usuarioInicioSesion.getApellido() + "," + libroAux.getISBN() + "," + libroAux.getNombre() + "," + "Prestamo";
+            writer.write(linea);
+            writer.newLine();
+
+            writer.close();
+        }catch (IOException e){
+            System.out.println("[!] Ha ocurrido un error [!]");
+            e.printStackTrace();
+        }
     }
 }

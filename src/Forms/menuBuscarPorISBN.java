@@ -2,6 +2,7 @@ package Forms;
 
 import Entities.Libro;
 import Entities.Usuario;
+import Entities.UsuarioInicioSesion;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,10 +22,12 @@ public class menuBuscarPorISBN extends JFrame {
 
     private List<Libro> listaLibros;
     private List<Usuario>listaUsuarios;
+    private UsuarioInicioSesion usuarioInicioSesion;
 
-    public menuBuscarPorISBN(List<Libro>listaLibros, List<Usuario>listaUsuarios){
+    public menuBuscarPorISBN(List<Libro>listaLibros, List<Usuario>listaUsuarios,UsuarioInicioSesion usuarioInicioSesion){
         this.listaLibros=listaLibros;
         this.listaUsuarios=listaUsuarios;
+        this.usuarioInicioSesion=usuarioInicioSesion;
         setContentPane(busquedaporISBN);
         setTitle("Menu de Biblioteca");
         setSize(500,400);
@@ -39,7 +42,7 @@ public class menuBuscarPorISBN extends JFrame {
         volverAlMenuPrincipalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuOpciones menuOpciones = new MenuOpciones(listaLibros,listaUsuarios);
+                MenuOpciones menuOpciones = new MenuOpciones(listaLibros,listaUsuarios,usuarioInicioSesion);
                 dispose();
                 menuOpciones.setVisible(true);
             }

@@ -2,6 +2,8 @@ package Forms;
 
 import Entities.Libro;
 import Entities.Usuario;
+import Entities.UsuarioInicioSesion;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,10 +18,12 @@ public class InicioSesion extends JFrame {
 
     private List<Usuario> listaUsuarios;
     private List<Libro> listaLibros;
+    private UsuarioInicioSesion usuarioInicioSesion;
 
-    public InicioSesion(List<Usuario> listaUsuarios,List<Libro>listaLibros){
+    public InicioSesion(List<Usuario> listaUsuarios,List<Libro>listaLibros,UsuarioInicioSesion usuarioInicioSesion){
         this.listaUsuarios=listaUsuarios;
         this.listaLibros=listaLibros;
+        this.usuarioInicioSesion=usuarioInicioSesion;
         setContentPane(menu);
         setTitle("Iniciar sesion");
         setSize(400,400);
@@ -51,9 +55,10 @@ public class InicioSesion extends JFrame {
                     String contraseniaAux = usuario.getContrasenia();
                     if(rutIngresado.equalsIgnoreCase(rutAux) && contraseniaIngresada.equalsIgnoreCase(contraseniaAux)) {
                         JOptionPane.showMessageDialog(menu, "Ingresaste con exito");
+                        UsuarioInicioSesion usuarioInicioSesion = new UsuarioInicioSesion(usuario.getRut(),usuario.getNombre(),usuario.getApellido(),usuario.getContrasenia());
                         condicion = false;
                         dispose();
-                        MenuOpciones menuOpciones = new MenuOpciones(listaLibros,listaUsuarios);
+                        MenuOpciones menuOpciones = new MenuOpciones(listaLibros,listaUsuarios,usuarioInicioSesion);
                         menuOpciones.setVisible(true);
 
                     }

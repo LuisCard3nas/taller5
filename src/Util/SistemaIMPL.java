@@ -2,6 +2,7 @@ package Util;
 
 import Entities.Libro;
 import Entities.Usuario;
+import Entities.UsuarioInicioSesion;
 import Forms.InicioSesion;
 import Forms.MenuOpciones;
 import Forms.menuBuscarPorISBN;
@@ -16,6 +17,7 @@ public class SistemaIMPL {
 
     private InicioSesion inicioSesion;
     private menuBuscarPorISBN menuBuscarPorISBN;
+    private UsuarioInicioSesion usuarioInicioSesion;
 
     /**
      * Método encargado de leer el archivo de "libros.txt".
@@ -67,7 +69,7 @@ public class SistemaIMPL {
     }
 
     public void starProgram(){
-        this.inicioSesion=new InicioSesion(ListaUsuarios,Libros);
+        this.inicioSesion=new InicioSesion(ListaUsuarios,Libros,usuarioInicioSesion);
 
     }
 }
