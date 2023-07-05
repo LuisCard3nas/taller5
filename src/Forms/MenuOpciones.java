@@ -72,7 +72,9 @@ public class MenuOpciones extends JFrame {
 
     }
     private void devolverlibro(){
-        JOptionPane.showMessageDialog(eleccionopciones,"DevolverLibro");
+        dispose();
+        menuDevolverLibro menuDevolverLibro = new menuDevolverLibro(listaLibro,listaUsuarios,usuarioInicioSesion);
+        menuDevolverLibro.setVisible(true);
 
     }
     private void agregarnuevolibro(){

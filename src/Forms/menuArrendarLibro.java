@@ -70,7 +70,6 @@ public class menuArrendarLibro extends JFrame {
                             libroaux.setStock(auxNuevoVarlosStock);
                             JOptionPane.showMessageDialog(menuarrendarlibro,"Libro arrendado con exito.");
                             String rutAux = usuarioInicioSesion.getRut();
-                            System.out.println(rutAux);
                             AgregarDatosPrestamoLibroTxt(libroaux,usuarioInicioSesion);
                             dispose();
                             MenuOpciones menuOpciones = new MenuOpciones(listaLibro,listaUsuarios,usuarioInicioSesion);

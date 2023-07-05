@@ -6,7 +6,6 @@ public class Main {
         sistemaIMPL.leerArchivoLibros();
         sistemaIMPL.leerArchivoUsuarios();
         sistemaIMPL.starProgram();
-        System.out.println("hola");
 
     }
 }
