@@ -24,6 +24,7 @@ public class menuBuscarPorISBN extends JFrame {
     private List<Usuario>listaUsuarios;
     private UsuarioInicioSesion usuarioInicioSesion;
 
+    //Se crea la clase MenuBuscarPorISBN con sus respectivos parametros, ademas se crea la interfaz grafica para esto.
     public menuBuscarPorISBN(List<Libro>listaLibros, List<Usuario>listaUsuarios,UsuarioInicioSesion usuarioInicioSesion){
         this.listaLibros=listaLibros;
         this.listaUsuarios=listaUsuarios;
@@ -48,11 +49,14 @@ public class menuBuscarPorISBN extends JFrame {
             }
         });
     }
+    //La clase DespliegaDatos es usadad para mostrar todos los parametros del libro que se buscó por el ISBN.
     private void despliegaDatos(List<Libro>listaLibros){
         boolean condicion = true;
         try{
+            //Se pregunta por el ISBN a buscar y se verifica que la casilla no etse vacia.
             String ISBNaBuscar = ISBNTextField.getText();
             if (!ISBNaBuscar.isEmpty()){
+                //Se crea un iterador para recorrer los libros que hay disponibles, y se almacenan los datos en variables.
                 Iterator<Libro>iterator = listaLibros.iterator();
                 while (iterator.hasNext()){
                     Libro libroaux = iterator.next();
@@ -61,7 +65,9 @@ public class menuBuscarPorISBN extends JFrame {
                     String Categoria = libroaux.getCategoria();
                     int NumeroCopias= libroaux.getStock();
                     String ISBNlibro=libroaux.getISBN();
+                    //Se compara el ISBN a buscar con el ISBN del sistema.
                     if (ISBNlibro.equalsIgnoreCase(ISBNaBuscar)){
+                        //Si el ISBN a buscar se encuentra en la lista, se despliegan los datos del libro en las casillas de la ventana.
                         TituloRespuesta.setText(Titulo);
                         Nombreautor.setText(NombreAutor);
                         CategoriaRespuesta.setText(Categoria);
@@ -70,6 +76,7 @@ public class menuBuscarPorISBN extends JFrame {
                         condicion=false;
                     }
                 }
+                //No esta el libro y se vacia la casilla para volver a rellenarlas con otro ISBN.
                 if (condicion){
                     JOptionPane.showMessageDialog(busquedaporISBN, "ISBN no encontrado , intente nuevamente");
                     TituloRespuesta.setText("");

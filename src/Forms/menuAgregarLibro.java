@@ -26,6 +26,7 @@ public class menuAgregarLibro extends JFrame {
     private List<Usuario>listaUsuarios;
     private UsuarioInicioSesion usuarioInicioSesion;
 
+    //Se crea la clase MenuAgregarLibro con sus respectivos parametros, ademas se crea la interfaz grafica para esto.
     public menuAgregarLibro(List<Libro>listaLibros,List<Usuario>listaUsuarios,UsuarioInicioSesion usuarioInicioSesion){
         this.listaLibros= listaLibros;
         this.usuarioInicioSesion=usuarioInicioSesion;
@@ -50,7 +51,7 @@ public class menuAgregarLibro extends JFrame {
         });
 
     }
-
+    //La clase agregarLibro es usada para preguntar por todos los datos del libro que se desea usar usando la ventana.
     private void agregarLibro(List<Libro>listaLibros){
         boolean isbnEncotrado=false;
         try{
@@ -60,7 +61,9 @@ public class menuAgregarLibro extends JFrame {
             String Categoria = CategoriaAgregar.getText();
             String Paginas = PaginasaAgregar.getText();
             String Stock = StockaAgregar.getText();
+            //Se verifica que todos los espacios tengan contenido.
             if (!ISBN.isEmpty() && !Titulo.isEmpty() && !Autor.isEmpty() && !Categoria.isEmpty() && !Paginas.isEmpty() && !Stock.isEmpty()){
+                //Se crea un iterador para recorrer el arreglo y comporbar si el libro que se desea agregar ya se encuentra en el sistema.
                 Iterator<Libro> iterator= this.listaLibros.iterator();
                 while (iterator.hasNext()){
                     Libro libroaux = iterator.next();
@@ -74,6 +77,7 @@ public class menuAgregarLibro extends JFrame {
                         clear();
                     }
                 }
+                //Si la condicion es true, o sea, que el libro no esta en el sistema ae agrega el libro con sus respectivos datos.
                 if(isbnEncotrado){
                     Libro libroaAgregar = new Libro(ISBN,Titulo,Autor,Categoria,Integer.parseInt(Paginas),Integer.parseInt(Stock));
                     listaLibros.add(libroaAgregar);
@@ -92,6 +96,7 @@ public class menuAgregarLibro extends JFrame {
         }
 
     }
+    //Clear para dejar los campos a rellenar vacios.
     private void clear(){
         ISBNaAgregar.setText("");
         TituloaAgregar.setText("");

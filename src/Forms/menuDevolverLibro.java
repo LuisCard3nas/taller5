@@ -23,6 +23,7 @@ public class menuDevolverLibro extends JFrame {
     private List<Usuario> listaUsuario;
     private UsuarioInicioSesion usuarioInicioSesion;
 
+    //Se crea la clase MenuDevolverLibro con sus respectivos parametros, ademas se crea la interfaz grafica para esto.
     public menuDevolverLibro(List<Libro>listaLibro,List<Usuario>listaUsuario,UsuarioInicioSesion usuarioInicioSesion){
         this.listaLibro=listaLibro;
         this.listaUsuario=listaUsuario;
@@ -49,24 +50,25 @@ public class menuDevolverLibro extends JFrame {
         });
 
     }
+    //La clase DevolverLibro es utilizada para deolver un libro y registrarlo en el archivo txt.
     private void devolverLibro(List<Libro>listaLibro){
         try{
             boolean condicion = true;
             String ISBNadevoler= ISBNlibroadevolver.getText();
+            //Se comprueba que la casilla no este vacia.
             if (!ISBNadevoler.isEmpty()){
+                //Se crea un iterador para buscar el ISBN que se quiere devolver y comparlo con los que estan registrados.
                 Iterator<Libro>iterator=listaLibro.iterator();
                 while (iterator.hasNext()){
                     Libro libroaux=iterator.next();
-                    String NombreAutor= libroaux.getAutor();
-                    String Titulo =libroaux.getNombre();
-                    String Categoria = libroaux.getCategoria();
-                    int NumeroCopias= libroaux.getStock();
                     String ISBNlibro=libroaux.getISBN();
                     if (ISBNlibro.equalsIgnoreCase(ISBNadevoler)){
+                        //Si se encuentra en los registros se le suma 1 al stock de dicho libro que se hubo una devolucion.
                         condicion=false;
                         int StockNuevo=libroaux.getStock()+1;
                         libroaux.setStock(StockNuevo);
                         JOptionPane.showMessageDialog(menudevolverlibro,"Libro devuelto con exito!");
+                        //Se manda los datos del usuario que hizo la devolucion junto a la del libro a un procedimiento.
                         AgregarDatosDevolucionLibroTxt(libroaux,usuarioInicioSesion);
                         dispose();
                         MenuOpciones menuOpciones = new MenuOpciones(listaLibro,listaUsuario,usuarioInicioSesion);
@@ -92,6 +94,7 @@ public class menuDevolverLibro extends JFrame {
         ISBNlibroadevolver.setText("");
     }
 
+    //Procedimiento usado para agregar una linea al archivo txt y de la operacion (Prestamo/Devolucion) en este caso Devolucion.
     private void AgregarDatosDevolucionLibroTxt (Libro libroAux,UsuarioInicioSesion usuarioInicioSesion){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Reservas.txt",true));

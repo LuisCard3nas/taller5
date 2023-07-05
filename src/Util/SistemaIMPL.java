@@ -11,17 +11,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class SistemaIMPL {
+public class SistemaIMPL implements Sistema{
+    //creacion arrays para almacenar los datos leidos desde el txt
     ArrayList<Usuario> ListaUsuarios = new ArrayList<Usuario>();
     ArrayList<Libro> Libros = new ArrayList<Libro>();
 
+    // inicializacion de los menus y clases a utilizar
     private InicioSesion inicioSesion;
     private menuBuscarPorISBN menuBuscarPorISBN;
     private UsuarioInicioSesion usuarioInicioSesion;
 
-    /**
-     * Método encargado de leer el archivo de "libros.txt".
-     */
+    @Override
     public void leerArchivoLibros() {
 
         // Leer el archivo "libros.txt"
@@ -44,10 +44,6 @@ public class SistemaIMPL {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
     }
-
-    /**
-     * Método encargado de leer el archivo de "usuarios.txt".
-     */
     public void leerArchivoUsuarios() {
 
         // Leer el archivo "usuarios.txt"
@@ -67,8 +63,8 @@ public class SistemaIMPL {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
     }
-
-    public void starProgram(){
+    @Override
+    public void startProgram(){
         this.inicioSesion=new InicioSesion(ListaUsuarios,Libros,usuarioInicioSesion);
 
     }

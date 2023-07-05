@@ -22,6 +22,7 @@ public class menuArrendarLibro extends JFrame {
     private List<Usuario>listaUsuarios;
     private UsuarioInicioSesion usuarioInicioSesion;
 
+    //Se crea la clase MenuArrendarLibro con sus respectivos parametros, ademas se crea la interfaz grafica para esto.
     public menuArrendarLibro(List<Libro>listaLibro,List<Usuario>listaUsuarios,UsuarioInicioSesion usuarioInicioSesion){
         this.listaLibro=listaLibro;
         this.listaUsuarios=listaUsuarios;
@@ -46,30 +47,31 @@ public class menuArrendarLibro extends JFrame {
                 menuOpciones.setVisible(true);
             }
         });
-
     }
+    //La clase buscarParaArrendar es usada para buscar el libro a arrendar y que tenga stock.
     private void buscarparaArrendas(List<Libro>listaLibro){
 
         try{
             boolean condicion = true;
             String ISBNaBuscar = ISBNTextField.getText();
+            //Se comprueba que la casilla no este vacia.
             if (!ISBNaBuscar.isEmpty()){
+                //Se crea el iterador para buscar dicho ISBN.
                 Iterator<Libro> iterator = listaLibro.iterator();
                 while (iterator.hasNext()){
                     Libro libroaux = iterator.next();
-                    String NombreAutor= libroaux.getAutor();
-                    String Titulo =libroaux.getNombre();
-                    String Categoria = libroaux.getCategoria();
-                    int NumeroCopias= libroaux.getStock();
                     String ISBNlibro=libroaux.getISBN();
+                    //Se almacena el ISBN de los libros que hay dispobiles para luego compararlo con el ISBN ingresado por el usuario.
                     if (ISBNlibro.equalsIgnoreCase(ISBNaBuscar)){
                         condicion = false;
                         int StockAux = libroaux.getStock();
+                        //Si son iguales se busca que el libro tenga stock.
                         if (StockAux != 0){
+                            //Si tiene stock disponible, se le resta 1 al stock porque se arrendo una copia.
                             int auxNuevoVarlosStock = StockAux-1;
                             libroaux.setStock(auxNuevoVarlosStock);
                             JOptionPane.showMessageDialog(menuarrendarlibro,"Libro arrendado con exito.");
-                            String rutAux = usuarioInicioSesion.getRut();
+                            //Ahora se invoca el procedimiento crea una linea de texto con los datos del usuario que arrendo el libro, los datos de dicho libro y su estado (Prestamos/Devolucion).
                             AgregarDatosPrestamoLibroTxt(libroaux,usuarioInicioSesion);
                             dispose();
                             MenuOpciones menuOpciones = new MenuOpciones(listaLibro,listaUsuarios,usuarioInicioSesion);
@@ -97,14 +99,13 @@ public class menuArrendarLibro extends JFrame {
     private void clear(){
         ISBNTextField.setText("");
     }
+    //Procedimiento encargado de crear un txt y agregar las operaciones realizadas (Prestamo/Devolucion), en este caso se agrega un prestamo.
     private void AgregarDatosPrestamoLibroTxt (Libro libroAux,UsuarioInicioSesion usuarioInicioSesion){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Reservas.txt",true));
-
             String linea = usuarioInicioSesion.getRut() + "," + usuarioInicioSesion.getNombre()+ "," + usuarioInicioSesion.getApellido() + "," + libroAux.getISBN() + "," + libroAux.getNombre() + "," + "Prestamo";
             writer.write(linea);
             writer.newLine();
-
             writer.close();
         }catch (IOException e){
             System.out.println("[!] Ha ocurrido un error [!]");

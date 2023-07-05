@@ -5,7 +5,7 @@ public class Main {
         SistemaIMPL sistemaIMPL = new SistemaIMPL();
         sistemaIMPL.leerArchivoLibros();
         sistemaIMPL.leerArchivoUsuarios();
-        sistemaIMPL.starProgram();
+        sistemaIMPL.startProgram();
 
     }
 }
