@@ -1,6 +1,57 @@
 @startuml
 skin rose
-package models{
+package BIBLIOTECH{
+package Entities{
+class Libro{
+- ISBN : String
+- Nombre : String
+- Autor : String
+- Categoria : String
+- CantidadPaginas : int
+- Stock : int
++ get´s()
++ set´s()
+}
+class Usuario{
+- RUT : String
+- Nombre : String
+- Apellido : String
+- Contraseña : String
++get´s()
++set´s()
+}
+class UsuarioInicioSesion{
+- RUT : String
+- Nombre : String
+- Apellido : String
+- Contraseña : String
++get´s()
++set´s()
+}
+}
+package Utils{
+interface Sistema{
++StarProgram(): void
++LeerArchivoLibros(): void
++LeerArchivoUsuarios(): void
+}
+class SistemaIMPL{
++sistemaIMPL()
+}
+}
+class ListaUsuarios{
+-ListaUsuarios: ArrayList<Usuario>
+}
+class ListaLibros{
+-ListaLibros: ArrayList<Libro>
+}
+SistemaIMPL "1" *-- "1" ListaLibros:Contiene
+SistemaIMPL "1" *-- "1" ListaUsuarios:Contiene
+ListaLibros "1" *--> "1..*" Libro:Contiene
+ListaUsuarios "1" *--> "1..*" Usuario:Contiene
+Sistema ..|> SistemaIMPL:Implementa
+UsuarioInicioSesion "1"--* SistemaIMPL:Tiene
 
 }
+
 @enduml
