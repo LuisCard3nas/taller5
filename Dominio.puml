@@ -1,0 +1,17 @@
+@startuml
+Class usuario{
+-Rut
+-Nombre
+-Apellido
+-Contrasenia
+}
+Class Libro{
+-isbn
+-titulo
+-autor
+-genero
+-copias
+-precio
+}
+usuario -->"Utiliza / Devuelve" Libro
+@enduml
